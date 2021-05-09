@@ -43,7 +43,10 @@ export default class EditorComponent extends HTMLElement {
     initRootNode() {
         let el = this.querySelector('div[data-type="editor"]');
         this.editorNode = el;
-        this.editorNode.innerHTML = this.value;
+				if (this.value) {
+					// Take value from this component if used with alpinejs.
+					this.editorNode.innerHTML = this.value;
+				}
     }
 
     initMenuNode() {
@@ -60,11 +63,12 @@ export default class EditorComponent extends HTMLElement {
     }
 
     generateEditorState() {
+
         this.state = EditorState.create({
             doc: DOMParser.fromSchema(this.schema).parse(this.editorNode),
             plugins: this.getPluginsList(this.menuNode),
         });
-    
+
         this.editorNode.innerText = "";
     }
 
@@ -86,7 +90,7 @@ export default class EditorComponent extends HTMLElement {
     handleInputEvent(event) {
         event.preventDefault();
         event.stopPropagation();
-        
+
         this.debouncedEventHandler();
     }
 
