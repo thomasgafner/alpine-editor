@@ -1,3 +1,6 @@
+# build folder
+dist/
+
 node_modules
 .DS_Store
 docs/.vuepress/dist
