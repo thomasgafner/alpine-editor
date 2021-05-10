@@ -137,7 +137,7 @@ export default function generateBaseSchema(editor) {
         },
 
         list_item: {
-            content: "paragraph block*",
+            content: "paragraph",
             parseDOM: [{ tag: "li" }],
             toDOM() { return liDOM },
             defining: true
@@ -161,14 +161,14 @@ export default function generateBaseSchema(editor) {
             }],
             toDOM(node) { let { href, title } = node.attrs; return ["a", { href, title }, 0] }
         },
-    
+
         // :: MarkSpec An emphasis mark. Rendered as an `<em>` element.
         // Has parse rules that also match `<i>` and `font-style: italic`.
         em: {
             parseDOM: [{ tag: "i" }, { tag: "em" }, { style: "font-style=italic" }],
             toDOM() { return emDOM }
         },
-    
+
         // :: MarkSpec A strong mark. Rendered as `<strong>`, parse rules
         // also match `<b>` and `font-weight: bold`.
         strong: {
@@ -180,7 +180,7 @@ export default function generateBaseSchema(editor) {
             { style: "font-weight", getAttrs: value => /^(bold(er)?|[5-9]\d{2,})$/.test(value) && null }],
             toDOM() { return strongDOM }
         },
-    
+
         // :: MarkSpec Code font mark. Represented as a `<code>` element.
         code: {
             parseDOM: [{ tag: "code" }],
