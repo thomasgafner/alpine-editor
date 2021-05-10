@@ -86,8 +86,24 @@ export default class MenuBar
         return this.editorView.state.schema;
     }
 
+		updateMenuPosition() {
+			const menu = this.editor.menuNode;
+			const style = window.getComputedStyle(menu);
+			const positionValue = style.getPropertyValue('position');
+			if (positionValue == 'absolute') {
+				const { anchor, head, from, to } = this.editorView.state.selection;
+	      const headCoord = this.editorView.coordsAtPos(head);
+				console.log('coords', headCoord)
+        let box = menu.offsetParent.getBoundingClientRect();
+				console.log('menu box', box)
+				menu.style.top = `${headCoord.top - 50}px`;
+      }
+
+		}
+
     update() {
         this.menuItems.forEach(menuItem => menuItem.update());
+				this.updateMenuPosition();
     }
 
     destroy() {
