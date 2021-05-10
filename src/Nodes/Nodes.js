@@ -12,8 +12,8 @@ export default function initNodes(editor) {
     editor.commandsManager.addCommand('list_item', { action: wrapInList, hideable: true });
 
     editor.actionsManager.addAction('lift', lift);
-    editor.actionsManager.addAction('join_up', joinUp);
-    editor.actionsManager.addAction('join_down', joinDown);
+    // editor.actionsManager.addAction('join_up', joinUp);
+    // editor.actionsManager.addAction('join_down', joinDown);
 
     return editor.schemaNodeSpec;
 }
