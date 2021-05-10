@@ -81,9 +81,21 @@ export default class EditorComponent extends HTMLElement {
             attributes.class = this.dataset.editorClasses;
         }
 
-        this.view = new EditorView(this.editorNode, {
+        let view = this.view = new EditorView(this.editorNode, {
             state: this.state,
-            attributes
+						// dispatchTransaction(transaction) {
+				    //   // Update editor state
+				    //   const previousState = view.state.doc;
+				    //   const newState = view.state.apply(transaction);
+				    //   view.updateState(newState);
+						//
+				    //   // Save content
+				    //   if (!previousState.eq(view.state.doc)) {
+						// 		console.log('save')
+				    //   }
+			    	// },
+			    	// handleDOMEvents: {},
+						attributes
         });
 
         this.view.dom.addEventListener('input', this.handleInputEvent.bind(this));
