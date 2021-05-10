@@ -1,7 +1,9 @@
 import { Schema } from "prosemirror-model"
 
 export default function generateBaseSchema(editor) {
-    const emDOM = ["em", 0], strongDOM = ["strong", 0], codeDOM = ["code", 0];
+    const emDOM = ["em", 0];
+		const strongDOM = ["strong", 0];
+		const codeDOM = ["code", 0];
     const pDOM = ["p", { class: editor.config.pClasses }, 0];
     const blockquoteDOM = ["blockquote", { class: editor.config.bqClasses }, 0];
     const hrDOM = ["hr", { class: editor.config.hrClasses }];
