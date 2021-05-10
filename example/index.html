@@ -13,6 +13,16 @@
 		<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
 		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tailwindcss/ui@latest/dist/tailwind-ui.min.css">
 -->
+		<script type="text/javascript">
+			document.addEventListener("DOMContentLoaded", function(event) {
+				document.querySelectorAll('alpine-editor').forEach(function(ed){
+					// TODO make 'change' events available 
+					ed.addEventListener('input', function(ev) {
+						console.log('changed', this.state.doc)
+					})
+				});
+			});
+		</script>
 </head>
 <body>
 		<div
