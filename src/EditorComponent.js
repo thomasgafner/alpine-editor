@@ -114,12 +114,12 @@ export default class EditorComponent extends HTMLElement {
 						history(),
 						keymap({
 							"Enter": splitListItem(this.schema.nodes.list_item),
-							"Shift-Enter": chainCommands(exitCode, (state, dispatch) => {
-					      dispatch(state.tr.replaceSelectionWith(
-									this.schema.nodes.hard_break.create()
-								).scrollIntoView())
-					      return true
-					    }),
+							// "Shift-Enter": chainCommands(exitCode, (state, dispatch) => {
+					    //   dispatch(state.tr.replaceSelectionWith(
+							// 		this.schema.nodes.hard_break.create()
+							// 	).scrollIntoView())
+					    //   return true
+					    // }),
 							"Mod-z": undo,
 							"Mod-Shift-z": redo,
 							"Mod-y": redo
