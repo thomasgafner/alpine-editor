@@ -64,3 +64,10 @@ alpine-editor > div[data-type="menu"] {
 button.operation-action.active-state {
 	background-color: #ffffff;
 }
+
+alpine-editor .action-group {
+	margin-left: 10px;
+}
+alpine-editor .action-group:first-child {
+	margin-left: inherit;
+}
