@@ -53,4 +53,10 @@ li.ProseMirror-selectednode:after {
 alpine-editor > div[data-type="menu"] {
 	position: absolute;
 	z-index: 200;
+	margin-top: -50px;
+	white-space: nowrap;
+}
+
+alpine-editor > div[data-type="menu"] {
+	background: #aabbcc;
 }

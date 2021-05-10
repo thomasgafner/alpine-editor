@@ -93,12 +93,18 @@ export default class MenuBar
 			if (positionValue == 'absolute') {
 				const { anchor, head, from, to } = this.editorView.state.selection;
 	      const headCoord = this.editorView.coordsAtPos(head);
-				console.log('coords', headCoord)
-        let box = menu.offsetParent.getBoundingClientRect();
-				console.log('menu box', box)
-				menu.style.top = `${headCoord.top - 50}px`;
+				// console.log('coords', headCoord)
+        // let box = menu.offsetParent.getBoundingClientRect();
+				let box = menu.getBoundingClientRect();
+				// console.log('menu box', box, box.height)
+				let cy = Math.round(headCoord.top);
+				cy -= Math.round(0.5 * box.height);
+				let cx = Math.round(headCoord.left - 0.5 * box.width);
+				// TODO handle border situations
+				// console.log('x, y', cx, cy)
+				menu.style.left = `${cx}px`;
+				menu.style.top = `${cy}px`;
       }
-
 		}
 
     update() {
