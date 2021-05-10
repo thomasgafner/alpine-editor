@@ -3,6 +3,8 @@ import { EditorState } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
 import { baseKeymap } from "prosemirror-commands";
 import { keymap } from "prosemirror-keymap";
+import { undo, redo, history } from "prosemirror-history";
+import {wrapInList, splitListItem} from "prosemirror-schema-list"
 import initMenuPlugin from "./Menu/MenuPlugin";
 import ActionsManager from "./Managers/ActionsManager";
 import CommandsManager from "./Managers/CommandsManager";
@@ -109,7 +111,14 @@ export default class EditorComponent extends HTMLElement {
 
     getPluginsList() {
         return [
-            keymap(baseKeymap),
+						history(),
+						keymap({
+							"Enter": splitListItem(this.schema.nodes.list_item),
+							"Mod-z": undo,
+							"Mod-Shift-z": redo,
+							"Mod-y": redo
+						}),
+						keymap(baseKeymap),
             initMenuPlugin(this),
         ];
     }
