@@ -61,7 +61,7 @@ alpine-editor > div[data-type="menu"] {
 	background: #aabbcc;
 }
 
-button.operation-action.active-state {
+.operation-action.active-state {
 	background-color: #ffffff;
 }
 

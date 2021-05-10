@@ -11,7 +11,8 @@ export default function initNodes(editor) {
     editor.commandsManager.addCommand('ordered_list', { action: wrapInList, hideable: true });
     // editor.commandsManager.addCommand('list_item', { action: wrapInList, hideable: true });
 
-    editor.actionsManager.addAction('lift', lift);
+		editor.actionsManager.addAction('lift', lift);
+		// TODO activate editor.actionsManager.addAction('horizontal_rule', lift);
     // editor.actionsManager.addAction('join_up', joinUp);
     // editor.actionsManager.addAction('join_down', joinDown);
 

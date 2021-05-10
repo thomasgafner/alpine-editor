@@ -24,7 +24,7 @@ export default class MenuBar
     }
 
     initMenuNode(menuNode) {
-        menuNode.querySelectorAll("button[data-command]").forEach(child => {
+        menuNode.querySelectorAll("[data-command]").forEach(child => {
             let menuItem;
             let attrs = this.extractNodeAttributes(child);
             let options = this.extractNodeOptionsFromData(child);
