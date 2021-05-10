@@ -1,7 +1,7 @@
 import { DOMParser, Schema } from "prosemirror-model";
 import { EditorState } from "prosemirror-state";
 import { EditorView } from "prosemirror-view";
-import { baseKeymap } from "prosemirror-commands";
+import { baseKeymap, chainCommands, exitCode } from "prosemirror-commands";
 import { keymap } from "prosemirror-keymap";
 import { undo, redo, history } from "prosemirror-history";
 import {wrapInList, splitListItem} from "prosemirror-schema-list"
@@ -114,6 +114,12 @@ export default class EditorComponent extends HTMLElement {
 						history(),
 						keymap({
 							"Enter": splitListItem(this.schema.nodes.list_item),
+							"Shift-Enter": chainCommands(exitCode, (state, dispatch) => {
+					      dispatch(state.tr.replaceSelectionWith(
+									this.schema.nodes.hard_break.create()
+								).scrollIntoView())
+					      return true
+					    }),
 							"Mod-z": undo,
 							"Mod-Shift-z": redo,
 							"Mod-y": redo
