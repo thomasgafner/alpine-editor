@@ -117,9 +117,15 @@ export default class EditorComponent extends HTMLElement {
 							// "Shift-Enter": chainCommands(exitCode, (state, dispatch) => {
 					    //   dispatch(state.tr.replaceSelectionWith(
 							// 		this.schema.nodes.hard_break.create()
-							// 	).scrollIntoView())
+							// 	).scrollIntoView());
 					    //   return true
 					    // }),
+							"Mod--": (state, dispatch) => {
+					      dispatch(state.tr.replaceSelectionWith(
+									this.schema.nodes.horizontal_rule.create()
+								).scrollIntoView());
+					      return true
+					    },
 							"Mod-z": undo,
 							"Mod-Shift-z": redo,
 							"Mod-y": redo
