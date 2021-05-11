@@ -1,23 +1,4 @@
-
-function createActionGroup(name) {
-	let elt = document.createElement("span");
-	elt.classList.add('action-group');
-	elt.classList.add(`${name}-actions`);
-	return elt;
-}
-
-function createAction(name, label, level = false) {
-	let elt = document.createElement("a");
-	elt.classList.add('operation-action');
-	elt.classList.add(`${name.replace('_', '-')}${(level)?`-${level}`:''}-action`);
-	elt.dataset.activeClass = 'active-state';
-	elt.dataset.command = name;
-	if (level) elt.dataset.level = level;
-	elt.href = '#';
-	elt.innerHTML = label;
-	// TODO prevent follow or alike
-	return elt;
-}
+import {createActionGroup, createAction} from "./DefaultElements";
 
 export function createDefaultMenuNode() {
 
@@ -29,7 +10,7 @@ export function createDefaultMenuNode() {
 	grp.appendChild(createAction('strong','Strong'));
 	grp.appendChild(createAction('em','Emphasis'));
 	// grp.appendChild(createAction('code','Code'));
-	// TODO add anchor here
+	grp.appendChild(createAction('link','Link'));
 
 	grp = elt.appendChild(createActionGroup('lists'));
 	grp.appendChild(createAction('ordered_list','Ordered list'));

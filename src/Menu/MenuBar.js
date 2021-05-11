@@ -1,4 +1,5 @@
 import MenuItemMark from "./MenuItemMark";
+import MenuItemHyperlink from "./MenuItemHyperlink";
 import MenuItemNode from "./MenuItemNode";
 import MenuItemAction from "./MenuItemAction";
 
@@ -30,7 +31,11 @@ export default class MenuBar
             let options = this.extractNodeOptionsFromData(child);
 
             if (this.schema.marks[`${options.command}`]) {
-                menuItem = new MenuItemMark(child, this.editorView, options);
+							if (options.command != 'link') {
+								menuItem = new MenuItemMark(child, this.editorView, options);
+							} else {
+								menuItem = new MenuItemHyperlink(child, this.editorView, menuNode, options);
+							}
             } else if (this.commandsManager.hasCommand(options.command)) {
                 let command = this.commandsManager.getCommand(options.command);
                 options.run = command.action;
