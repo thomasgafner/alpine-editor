@@ -50,14 +50,25 @@ li.ProseMirror-selectednode:after {
 /* ////////////////////////////////////// */
 /* user styles */
 
-alpine-editor > div[data-type="menu"] {
+alpine-editor > [data-type="menu"] {
 	position: absolute;
 	z-index: 200;
 	margin-top: -50px;
 	white-space: nowrap;
 }
 
-alpine-editor > div[data-type="menu"] {
+alpine-editor > [data-type="link-edit"] {
+	margin-top: -50px;
+	white-space: nowrap;
+}
+
+
+
+alpine-editor > [data-type="menu"] {
+	background: #aabbcc;
+}
+
+alpine-editor > [data-type="link-edit"] {
 	background: #aabbcc;
 }
 

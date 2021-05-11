@@ -1,6 +1,7 @@
 import { toggleMark } from "prosemirror-commands"
 import MenuItemMark from "./MenuItemMark";
 import {createDefaultLinkEditNode} from "./DefaultLinkEdit";
+import {positionToHead} from "./ToSelectionPositioning";
 
 // Append "https" if doesnt exist
 const appendUrlPrefix = function(url) {
@@ -32,8 +33,9 @@ export default class MenuItemHyperlink extends MenuItemMark {
 		let linkEdit = itemNode.querySelector('[data-type="link-edit"]');
 		if (!linkEdit) {
 			linkEdit = createDefaultLinkEditNode();
-			// insert before menu node (by default)
-			menuNode.parentNode.insertBefore(linkEdit, menuNode);
+			linkEdit.style.position = 'absolute';
+			// insert at the end of the editor (for it overlaps all by default)
+			menuNode.parentNode.appendChild(linkEdit);
 		}
 		this.linkEditNode = linkEdit
 		this.originalLinkEditDisplayValue =
@@ -102,8 +104,8 @@ export default class MenuItemHyperlink extends MenuItemMark {
 				return this.createAnchor({ href: selectedText, title: selectedText },schema);
 			}
 
-			// set center of link edit to center of menu
-			// TODO
+			// set center of link edit to head
+			positionToHead(this.linkEditNode, this.editorView);
 
 			// hide menu and show link edit
 			this.menuNode.style.display = 'none';

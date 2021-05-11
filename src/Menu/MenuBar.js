@@ -2,6 +2,7 @@ import MenuItemMark from "./MenuItemMark";
 import MenuItemHyperlink from "./MenuItemHyperlink";
 import MenuItemNode from "./MenuItemNode";
 import MenuItemAction from "./MenuItemAction";
+import {positionToHead} from "./ToSelectionPositioning";
 
 const ACCEPTED_DATA_ATTRIBUTES = [
     'level',
@@ -96,19 +97,7 @@ export default class MenuBar
 			const style = window.getComputedStyle(menu);
 			const positionValue = style.getPropertyValue('position');
 			if (positionValue == 'absolute') {
-				const { anchor, head, from, to } = this.editorView.state.selection;
-	      const headCoord = this.editorView.coordsAtPos(head);
-				// console.log('coords', headCoord)
-        // let box = menu.offsetParent.getBoundingClientRect();
-				let box = menu.getBoundingClientRect();
-				// console.log('menu box', box, box.height)
-				let cy = Math.round(headCoord.top);
-				cy -= Math.round(0.5 * box.height);
-				let cx = Math.round(headCoord.left - 0.5 * box.width);
-				// TODO handle border situations
-				// console.log('x, y', cx, cy)
-				menu.style.left = `${cx}px`;
-				menu.style.top = `${cy}px`;
+				positionToHead(menu, this.editorView);
       }
 		}
 
