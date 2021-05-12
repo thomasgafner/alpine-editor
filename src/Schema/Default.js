@@ -30,7 +30,7 @@ export default function generateBaseSchema(editor) {
 
         // :: NodeSpec A blockquote (`<blockquote>`) wrapping one or more blocks.
         blockquote: {
-            content: "block+",
+            content: "paragraph+",
             group: "block",
             defining: true,
             parseDOM: [{ tag: "blockquote" }],
