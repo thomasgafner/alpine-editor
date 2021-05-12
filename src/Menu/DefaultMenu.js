@@ -1,6 +1,6 @@
 import {createActionGroup, createAction} from "./DefaultElements";
 
-export function createDefaultMenuNode() {
+export function createDefaultMenuNode(config) {
 
 	let elt = document.createElement("div");
 	elt.dataset.type = 'menu';
@@ -15,7 +15,10 @@ export function createDefaultMenuNode() {
 	grp = elt.appendChild(createActionGroup('lists'));
 	grp.appendChild(createAction('ordered_list','Ordered list'));
 	grp.appendChild(createAction('bullet_list','Bullet list'));
-	// grp.appendChild(createAction('lift','Lift'));
+	if (!config.defaultToggleBlock) {
+		grp.appendChild(createAction('blockquote','Blockquote'));
+		grp.appendChild(createAction('lift','Lift'));
+	}
 
 	grp = elt.appendChild(createActionGroup('blocks'));
 	grp.appendChild(createAction('paragraph','Paragraph'));
@@ -23,8 +26,10 @@ export function createDefaultMenuNode() {
 	grp.appendChild(createAction('heading','Small heading', 3));
 
 	grp = elt.appendChild(createActionGroup('specials'));
-	// grp.appendChild(createAction('blockquote','Blockquote'));
-	grp.appendChild(createAction('code_block','Code block'));
+	if (config.defaultToggleBlock) {
+		grp.appendChild(createAction('blockquote','Blockquote'));
+	}
+	// grp.appendChild(createAction('code_block','Code block'));
 	// TODO grp.appendChild(createAction('horizontal_rule','Horizontal rule'));
 
 	return elt;

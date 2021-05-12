@@ -35,8 +35,8 @@ export default class EditorComponent extends HTMLElement {
 
 		init() {
 				this.initRootNode();
-				this.initMenuNode();
 				this.initConfig();
+				this.initMenuNode();
 				this.initSchema();
 				this.initTools();
 				this.generateEditorState();
@@ -55,7 +55,7 @@ export default class EditorComponent extends HTMLElement {
 		initMenuNode() {
 			let menu = this.querySelector('div[data-type="menu"]');
 			if (!menu) {
-				menu = createDefaultMenuNode();
+				menu = createDefaultMenuNode(this.config);
 				// insert before editor (by default)
 				const en = this.editorNode;
 				en.parentNode.insertBefore(menu, en);
