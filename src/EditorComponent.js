@@ -7,6 +7,7 @@ import { undo, redo, history } from "prosemirror-history";
 import {wrapInList, splitListItem} from "prosemirror-schema-list"
 import initMenuPlugin from "./Menu/MenuPlugin";
 import {createDefaultMenuNode} from "./Menu/DefaultMenu";
+import {createDefaultContentNode} from "./Menu/DefaultContent";
 import ActionsManager from "./Managers/ActionsManager";
 import CommandsManager from "./Managers/CommandsManager";
 import initNodes from "./Nodes/Nodes";
@@ -34,17 +35,21 @@ export default class EditorComponent extends HTMLElement {
 		}
 
 		init() {
-				this.initRootNode();
-				this.initConfig();
-				this.initMenuNode();
-				this.initSchema();
-				this.initTools();
-				this.generateEditorState();
-				this.createEditorView();
+			this.initConfig();
+			this.initRootNode();
+			this.initMenuNode();
+			this.initSchema();
+			this.initTools();
+			this.generateEditorState();
+			this.createEditorView();
 		}
 
 		initRootNode() {
 				let el = this.querySelector('div[data-type="editor"]');
+				if (!el) {
+					el = createDefaultContentNode(this.config);
+					this.appendChild(el);
+				}
 				this.editorNode = el;
 				if (this.value) {
 					// Take value from this component if used with alpinejs.
@@ -134,12 +139,12 @@ export default class EditorComponent extends HTMLElement {
 						history(),
 						keymap({
 							"Enter": splitListItem(this.schema.nodes.list_item),
-							// "Shift-Enter": chainCommands(exitCode, (state, dispatch) => {
-							//   dispatch(state.tr.replaceSelectionWith(
-							// 		this.schema.nodes.hard_break.create()
-							// 	).scrollIntoView());
-							//   return true
-							// }),
+							"Shift-Enter": chainCommands(exitCode, (state, dispatch) => {
+							  dispatch(state.tr.replaceSelectionWith(
+									this.schema.nodes.hard_break.create()
+								).scrollIntoView());
+							  return true
+							}),
 							"Mod--": (state, dispatch) => {
 								dispatch(state.tr.replaceSelectionWith(
 									this.schema.nodes.horizontal_rule.create()
