@@ -77,10 +77,18 @@ alpine-editor > [data-type="link-edit"] {
 }
 
 alpine-editor .action-group {
-	margin-left: 10px;
+	/*margin-left: 10px;*/
+}
+alpine-editor .action-group::before {
+	content: "|";
+	margin-left: 0.5em;
+	margin-right: 1em;
 }
 alpine-editor .action-group:first-child {
-	margin-left: inherit;
+	/*margin-left: inherit;*/
+}
+alpine-editor .action-group:first-child::before {
+	display: none;
 }
 
 /* Very uggly way to style the menu */
