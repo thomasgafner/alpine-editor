@@ -50,7 +50,7 @@ li.ProseMirror-selectednode:after {
 /* ////////////////////////////////////// */
 /* user styles */
 
-alpine-editor > [data-type="menu"] {
+.our-one > [data-type="menu"] {
 	position: absolute;
 	z-index: 200;
 	margin-top: -50px;
@@ -81,4 +81,12 @@ alpine-editor .action-group {
 }
 alpine-editor .action-group:first-child {
 	margin-left: inherit;
+}
+
+/* Very uggly way to style the menu */
+.our-one .operation-action {
+	display: inline-block;
+	width: 2em;
+	margin-right: 5px;
+	overflow-x: hidden;
 }
