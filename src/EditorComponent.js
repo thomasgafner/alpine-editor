@@ -14,6 +14,7 @@ import initNodes from "./Nodes/Nodes";
 import debounce from "lodash-es/debounce";
 import EditorConfig from "./EditorConfig";
 import generateBaseSchema from "./Schema/Default";
+import {insertHorizontalRule} from "./Commands/HorizontalRule";
 
 export default class EditorComponent extends HTMLElement {
 		constructor() {
@@ -145,12 +146,7 @@ export default class EditorComponent extends HTMLElement {
 								).scrollIntoView());
 							  return true
 							}),
-							"Mod--": (state, dispatch) => {
-								dispatch(state.tr.replaceSelectionWith(
-									this.schema.nodes.horizontal_rule.create()
-								).scrollIntoView());
-								return true
-							},
+							"Mod--": insertHorizontalRule,
 							"Mod-z": undo,
 							"Mod-Shift-z": redo,
 							"Mod-y": redo

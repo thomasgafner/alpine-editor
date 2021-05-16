@@ -30,7 +30,7 @@ export function createDefaultMenuNode(config) {
 		grp.appendChild(createAction('blockquote','Blockquote'));
 	}
 	// grp.appendChild(createAction('code_block','Code block'));
-	// TODO grp.appendChild(createAction('horizontal_rule','Horizontal rule'));
+	grp.appendChild(createAction('horizontal_rule','Horizontal rule'));
 
 	return elt;
 }

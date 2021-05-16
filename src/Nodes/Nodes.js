@@ -1,5 +1,6 @@
 import { setBlockType, wrapIn, joinDown, joinUp, lift } from "prosemirror-commands";
 import { wrapInList } from "prosemirror-schema-list";
+import {insertHorizontalRule} from "../Commands/HorizontalRule";
 
 export default function initNodes(editor) {
     editor.commandsManager.addCommand('heading', {action: setBlockType, activatable: true,});
@@ -12,7 +13,8 @@ export default function initNodes(editor) {
     // editor.commandsManager.addCommand('list_item', { action: wrapInList, hideable: true });
 
 		editor.actionsManager.addAction('lift', lift);
-		// TODO activate editor.actionsManager.addAction('horizontal_rule', lift);
+		editor.actionsManager.addAction('horizontal_rule', insertHorizontalRule);
+
     // editor.actionsManager.addAction('join_up', joinUp);
     // editor.actionsManager.addAction('join_down', joinDown);
 
