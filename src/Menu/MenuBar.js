@@ -104,6 +104,13 @@ export default class MenuBar
     update() {
         this.menuItems.forEach(menuItem => menuItem.update());
 				this.updateMenuPosition();
+				
+				const {from, to} = this.editorView.state.selection;
+				if (from < to) {
+					this.editor.classList.add('selection-expanded');
+				} else {
+					this.editor.classList.remove('selection-expanded');
+				}
     }
 
     destroy() {

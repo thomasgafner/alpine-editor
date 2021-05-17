@@ -51,11 +51,17 @@ li.ProseMirror-selectednode:after {
 /* user styles */
 
 .our-one > [data-type="menu"] {
+	display: none;
 	position: absolute;
 	z-index: 200;
 	margin-top: -50px;
 	white-space: nowrap;
 }
+
+.our-one.selection-expanded > [data-type="menu"] {
+	display: inherit;
+}
+
 
 alpine-editor > [data-type="link-edit"] {
 	margin-top: -50px;
