@@ -1,4 +1,6 @@
 import MenuItem from "./MenuItem";
+import { generalActiveCheck } from "../Commands/GeneralActiveCheck";
+
 
 export default class MenuItemNode extends MenuItem {
     constructor(itemNode, editorView, options = {}, attrs = {}) {
@@ -15,9 +17,12 @@ export default class MenuItemNode extends MenuItem {
         if (this.options.hideable) {
             return this.run(this.state);
         } else if (this.options.activatable) {
-            let {$from, to, node} = this.state.selection
-            if (node) return node.hasMarkup(this.type, this.attrs)
-            return to <= $from.end() && $from.parent.hasMarkup(this.type, this.attrs)
+					const hasSpecificWrapper =
+						generalActiveCheck(this.type)(this.state);
+					return hasSpecificWrapper;
+            // let {$from, to, node} = this.state.selection
+            // if (node) return node.hasMarkup(this.type, this.attrs)
+            // return to <= $from.end() && $from.parent.hasMarkup(this.type, this.attrs)
         }
     }
 

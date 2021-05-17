@@ -12,24 +12,28 @@ export function createDefaultMenuNode(config) {
 	// grp.appendChild(createAction('code','Code'));
 	grp.appendChild(createAction('link','Link'));
 
-	grp = elt.appendChild(createActionGroup('lists'));
-	grp.appendChild(createAction('ordered_list','Ordered list'));
-	grp.appendChild(createAction('bullet_list','Bullet list'));
-	if (!config.defaultToggleBlock) {
-		grp.appendChild(createAction('blockquote','Blockquote'));
-		grp.appendChild(createAction('lift','Lift'));
-	}
-
 	grp = elt.appendChild(createActionGroup('blocks'));
-	grp.appendChild(createAction('paragraph','Paragraph'));
+	if (!config.defaultToggleBlock) {
+		grp.appendChild(createAction('paragraph','Paragraph'));
+	}
 	grp.appendChild(createAction('heading','Big heading', 2));
 	grp.appendChild(createAction('heading','Small heading', 3));
 
-	grp = elt.appendChild(createActionGroup('specials'));
+	grp = elt.appendChild(createActionGroup('lists'));
+	grp.appendChild(createAction('bullet_list','Bullet list'));
+	grp.appendChild(createAction('ordered_list','Ordered list'));
 	if (config.defaultToggleBlock) {
 		grp.appendChild(createAction('blockquote','Blockquote'));
 	}
+	if (!config.defaultToggleBlock) {
+		grp.appendChild(createAction('lift','Lift'));
+	}
+
+	grp = elt.appendChild(createActionGroup('specials'));
 	// grp.appendChild(createAction('code_block','Code block'));
+	if (!config.defaultToggleBlock) {
+		grp.appendChild(createAction('blockquote','Blockquote'));
+	}
 	grp.appendChild(createAction('horizontal_rule','Horizontal rule'));
 
 	return elt;
