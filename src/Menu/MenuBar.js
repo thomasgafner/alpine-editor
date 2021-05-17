@@ -58,6 +58,12 @@ export default class MenuBar
                 menuItem
             );
         });
+
+				const en = this.editor;
+				this.editorView.dom.addEventListener('blur', function(ev) {
+					en.classList.remove('selection-expanded');
+				});
+
     }
 
     extractNodeAttributes(node) {
@@ -104,7 +110,7 @@ export default class MenuBar
     update() {
         this.menuItems.forEach(menuItem => menuItem.update());
 				this.updateMenuPosition();
-				
+
 				const {from, to} = this.editorView.state.selection;
 				if (from < to) {
 					this.editor.classList.add('selection-expanded');
