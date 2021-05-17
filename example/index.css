@@ -50,6 +50,10 @@ li.ProseMirror-selectednode:after {
 /* ////////////////////////////////////// */
 /* user styles */
 
+.our-one > [data-type="editor"] {
+	border: 2px solid black;
+}
+
 .our-one > [data-type="menu"] {
 	display: none;
 	position: absolute;
