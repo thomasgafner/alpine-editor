@@ -23,6 +23,7 @@ export default class EditorComponent extends HTMLElement {
 				this.state = null;
 				this.view = null;
 				this.editorNode = null;
+				this.menuNode = null;
 				this.actionsManager = new ActionsManager();
 				this.commandsManager = new CommandsManager();
 
